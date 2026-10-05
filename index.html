@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>My Daily Planner</title>
+
+    <link rel="stylesheet" href="style.css">
+    <link rel="manifest" href="manifest.json">
+
+<meta name="theme-color" content="#222222">
+</head>
+
+<body>
+
+    <div class="app">
+
+        <!-- Header -->
+        <header>
+            <div>
+                <p class="welcome">MY DAILY PLANNER</p>
+                <h1>Plan Your Day ✨</h1>
+            </div>
+
+            <button class="today-btn" onclick="goToday()">
+                Today
+            </button>
+        </header>
+
+
+        <!-- Date Navigation -->
+        <section class="date-navigation">
+
+            <button onclick="changeDate(-1)">←</button>
+
+            <div>
+                <h2 id="dateTitle"></h2>
+                <p id="dayTitle"></p>
+            </div>
+
+            <button onclick="changeDate(1)">→</button>
+
+        </section>
+
+
+        <!-- Progress -->
+        <section class="progress-card">
+
+            <div class="progress-header">
+                <div>
+                    <p>Daily Progress</p>
+                    <h2 id="progressText">0%</h2>
+                </div>
+
+                <div class="progress-circle" id="progressCircle">
+                    0%
+                </div>
+            </div>
+
+            <div class="progress-bar">
+                <div id="progressFill"></div>
+            </div>
+
+            <p id="taskSummary">0 of 0 tasks completed</p>
+
+        </section>
+        <!-- Motivational Quote -->
+
+
+
+        <!-- Add Task -->
+        <section class="add-task-card">
+
+            <h2>Add a Task</h2>
+
+            <input
+                type="text"
+                id="taskInput"
+                placeholder="What do you need to do?"
+            >
+
+            <div class="task-options">
+
+                <select id="categoryInput">
+
+                    <option value="Study">📚 Study</option>
+                    <option value="Work">💼 Work</option>
+                    <option value="Personal">🏠 Personal</option>
+                    <option value="Health">❤️ Health</option>
+                    <option value="Other">📌 Other</option>
+
+                </select>
+
+
+                <select id="priorityInput">
+
+                    <option value="Low">Low Priority</option>
+                    <option value="Medium" selected>
+                        Medium Priority
+                    </option>
+                    <option value="High">High Priority</option>
+
+                </select>
+                 <input
+                   type="time"
+                   id="timeInput"
+                      >
+
+
+                <button onclick="addTask()">
+                    + Add Task
+                </button>
+
+            </div>
+
+        </section>
+
+
+        <!-- Tasks -->
+        <section class="tasks-section">
+
+            <div class="tasks-header">
+                <h2>Today's Tasks</h2>
+
+                <span id="taskCount">
+                    0 tasks
+                </span>
+            </div>
+
+            <div id="taskList"></div>
+
+            <div id="emptyMessage">
+
+                <div class="empty-icon">📝</div>
+
+                <h3>No tasks yet</h3>
+
+                <p>Add something you want to accomplish today.</p>
+
+            </div>
+
+        </section>
+
+    </div>
+
+
+    <script src="script.js"></script>
+    <script>
+
+if ("serviceWorker" in navigator) {
+
+    window.addEventListener("load", () => {
+
+        navigator.serviceWorker
+            .register("./sw.js")
+            .then(() => {
+
+                console.log(
+                    "Service Worker registered successfully"
+                );
+
+            })
+            .catch(error => {
+
+                console.error(
+                    "Service Worker registration failed:",
+                    error
+                );
+
+            });
+
+    });
+
+}
+
+</script>
+
+</body>
+
+</html>
